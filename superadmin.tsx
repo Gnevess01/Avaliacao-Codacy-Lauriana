@@ -51,7 +51,7 @@ export default function TelaSuperAdmin() {
     };
 
     useEffect(() => {
-        buscarSolicitacoes();
+        void buscarSolicitacoes();
     }, []);
 
     const aprovarUsuario = async (solicitacao: SolicitacaoUsuario) => {
@@ -64,7 +64,7 @@ export default function TelaSuperAdmin() {
                 aprovadoEm: new Date(),
             });
             
-            buscarSolicitacoes();
+            void buscarSolicitacoes();
         } catch (error: any) {
             
         }
@@ -82,7 +82,7 @@ export default function TelaSuperAdmin() {
                         rejeitadoEm: new Date(),
                     });
                     
-                    buscarSolicitacoes();
+                    void buscarSolicitacoes();
                 } catch (error: any) {
                     
                 }

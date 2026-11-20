@@ -153,15 +153,15 @@ export default function TelaNotas() {
                 setEstaCarregando(false);
             }
         };
-        buscarUsuario();
+        void buscarUsuario();
     }, []);
 
     useEffect(() => {
         if (cargo) {
             if (podeGerenciar) {
-                buscarMotoristas();
+                void buscarMotoristas();
             } else if (podeAnexar && usuario) {
-                buscarMinhasViagens();
+                void buscarMinhasViagens();
             }
             setDataViagem(new Date().toLocaleDateString('pt-BR'));
         }
@@ -531,7 +531,7 @@ export default function TelaNotas() {
 
     const voltarParaListaMotoristas = () => {
         setMotoristaSelecionado(null);
-        buscarMotoristas();
+        void buscarMotoristas();
         setViagens([]);
         setViagensFiltradas([]);
         setBuscaMotorista('');
@@ -632,9 +632,9 @@ export default function TelaNotas() {
             setObservacaoNota('');
             
             if (podeAnexar) {
-                buscarMinhasViagens();
+                void buscarMinhasViagens();
             } else if (motoristaSelecionado) {
-                buscarViagensDoMotorista(motoristaSelecionado);
+                void buscarViagensDoMotorista(motoristaSelecionado);
             }
         } catch (error) {
             
@@ -665,9 +665,9 @@ export default function TelaNotas() {
             
             
             if (podeAnexar) {
-                buscarMinhasViagens();
+                void buscarMinhasViagens();
             } else if (motoristaSelecionado) {
-                buscarViagensDoMotorista(motoristaSelecionado);
+                void buscarViagensDoMotorista(motoristaSelecionado);
             }
         } catch (error) {
             
@@ -679,9 +679,9 @@ export default function TelaNotas() {
             await deleteDoc(doc(db, 'viagens', viagemId));
 
             if (podeAnexar) {
-                buscarMinhasViagens();
+                void buscarMinhasViagens();
             } else if (motoristaSelecionado) {
-                buscarViagensDoMotorista(motoristaSelecionado);
+                void buscarViagensDoMotorista(motoristaSelecionado);
             }
         } catch (error) {
         }
@@ -719,9 +719,9 @@ export default function TelaNotas() {
             setMotivoRejeicao('');
             
             if (podeAnexar) {
-                buscarMinhasViagens();
+                void buscarMinhasViagens();
             } else if (motoristaSelecionado) {
-                buscarViagensDoMotorista(motoristaSelecionado);
+                void buscarViagensDoMotorista(motoristaSelecionado);
             }
         } catch (error) {
             

@@ -45,7 +45,7 @@ export default function TelaInicio() {
             }
         };
         
-        buscarDadosUsuario();
+        void buscarDadosUsuario();
     }, []);
 
     const fazerLogout = () => {

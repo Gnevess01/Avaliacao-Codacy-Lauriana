@@ -26,7 +26,7 @@ export default function TelasLayout() {
             setLoading(false);
         };
 
-        checkUser();
+        void checkUser();
     }, []);
 
     if (loading) {

@@ -89,12 +89,12 @@ export default function TelaRelatorios() {
                 });
             });
         };
-        buscarUsuario();
+        void buscarUsuario();
     }, []);
 
     useEffect(() => {
         if (usuario && (usuario.cargo === 'gerente' || usuario.cargo === 'superadmin')) {
-            buscarDados();
+            void buscarDados();
         }
     }, [usuario]);
 

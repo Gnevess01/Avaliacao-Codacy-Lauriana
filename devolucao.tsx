@@ -249,7 +249,7 @@ export default function TelaDevolucao() {
                 setCargo(data.cargo);
             });
         };
-        buscarUsuario();
+        void buscarUsuario();
     }, []);
 
     const buscarCavalosDoUsuario = async () => {
@@ -305,13 +305,13 @@ export default function TelaDevolucao() {
     useEffect(() => {
         if (cargo) {
             if (isMotorista && usuario) {
-                buscarCavalosDoUsuario();
-                buscarMinhasDevolucoes();
+                void buscarCavalosDoUsuario();
+                void buscarMinhasDevolucoes();
             } else if (isAdmin) {
-                buscarTodosCavalos();
-                buscarMotoristasComEstatisticas();
+                void buscarTodosCavalos();
+                void buscarMotoristasComEstatisticas();
             } else if (isFuncionario) {
-                buscarMotoristasComEstatisticas();
+                void buscarMotoristasComEstatisticas();
             }
             setDataViagem(new Date().toLocaleDateString('pt-BR'));
         }
@@ -520,7 +520,7 @@ export default function TelaDevolucao() {
             setModalVisible(false);
             setEditando(null);
             limparFormulario();
-            buscarMinhasDevolucoes();
+            void buscarMinhasDevolucoes();
         } catch (error) {
         } finally {
             setEstaSalvando(false);
@@ -546,7 +546,7 @@ export default function TelaDevolucao() {
             } else if (podeVerListaMotoristas) {
                 await buscarMotoristasComEstatisticas();
             } else if (isMotorista) {
-                buscarMinhasDevolucoes();
+                void buscarMinhasDevolucoes();
             }
         } catch (error) {
         }
@@ -593,7 +593,7 @@ export default function TelaDevolucao() {
             } else if (podeVerListaMotoristas) {
                 await buscarMotoristasComEstatisticas();
             } else if (isMotorista) {
-                buscarMinhasDevolucoes();
+                void buscarMinhasDevolucoes();
             }
         } catch (error) {
         }
@@ -607,7 +607,7 @@ export default function TelaDevolucao() {
                 await buscarDevolucoesDoMotorista(motoristaSelecionado);
                 await buscarMotoristasComEstatisticas();
             } else if (isMotorista) {
-                buscarMinhasDevolucoes();
+                void buscarMinhasDevolucoes();
             } else if (podeVerListaMotoristas) {
                 await buscarMotoristasComEstatisticas();
             }

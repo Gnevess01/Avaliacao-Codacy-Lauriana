@@ -130,17 +130,17 @@ export default function TelaPlacas() {
                 setCargo(data.cargo);
             });
         };
-        buscarUsuario();
+        void buscarUsuario();
     }, []);
 
     useEffect(() => {
         if (cargo) {
             if (podeVisualizarProprioVeiculo && usuario) {
-                buscarMeuCavalo();
+                void buscarMeuCavalo();
             } else if (podeVisualizarListaMotoristas) {
-                carregarMotoristasComVeiculos();
+                void carregarMotoristasComVeiculos();
                 if (podeCadastrar) {
-                    buscarConjuntosDisponiveis();
+                    void buscarConjuntosDisponiveis();
                 }
             }
         }

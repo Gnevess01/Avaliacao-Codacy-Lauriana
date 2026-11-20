@@ -543,16 +543,16 @@ export default function DespesasScreen() {
             querySnapshot.forEach((doc) => { const data = doc.data(); setUsuario({ uid: doc.id, nome: data.nome, email: data.email, cargo: data.cargo }); setCargo(data.cargo); });
             setLoading(false);
         };
-        fetchUsuario();
+        void fetchUsuario();
     }, []);
 
     useEffect(() => {
         if (cargo === 'motorista' && usuario) {
-            fetchMinhasDespesas();
-            fetchMeusCavalos();
+            void fetchMinhasDespesas();
+            void fetchMeusCavalos();
             setFormData(prev => ({ ...prev, data: new Date().toLocaleDateString('pt-BR') }));
         } else if ((cargo === 'funcionario' || cargo === 'gerente' || cargo === 'superadmin') && usuario) {
-            fetchMotoristas();
+            void fetchMotoristas();
         }
     }, [cargo, usuario]);
 
