@@ -74,6 +74,23 @@ interface MotoristaInfo {
 }
 
 export default function TelaNotas() {
+    const abrirImagemNovaAba = (imagemBase64: string) => {
+        if (Platform.OS !== 'web' || !imagemBase64.startsWith('data:image/')) return;
+        const janela = window.open();
+        if (!janela) return;
+        const corpo = janela.document.body;
+        corpo.style.cssText = 'margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#1a1a1a;';
+        const imagem = janela.document.createElement('img');
+        imagem.src = imagemBase64;
+        imagem.style.cssText = 'max-width:100%;max-height:100vh';
+        const botaoFechar = janela.document.createElement('button');
+        botaoFechar.textContent = 'Fechar';
+        botaoFechar.style.cssText = 'position:fixed;top:20px;right:20px;padding:10px 20px;background:#ff4444;color:white;border:none;border-radius:8px;cursor:pointer';
+        botaoFechar.onclick = () => janela.close();
+        corpo.appendChild(imagem);
+        corpo.appendChild(botaoFechar);
+    };
+
     const [usuario, setUsuario] = useState<any>(null);
     const [cargo, setCargo] = useState<string>('');
     const [estaCarregando, setEstaCarregando] = useState(true);
@@ -825,10 +842,7 @@ export default function TelaNotas() {
                                             
                                             {nota.imagemBase64 ? (
                                                 <TouchableOpacity onPress={() => {
-                                                    if (Platform.OS === 'web') {
-                                                        const win = window.open();
-                                                        win?.document.write(`<html><body style="margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#1a1a1a;"><img src="${nota.imagemBase64}" style="max-width:100%;max-height:100vh"/><button onclick="window.close()" style="position:fixed;top:20px;right:20px;padding:10px 20px;background:#ff4444;color:white;border:none;border-radius:8px;cursor:pointer">Fechar</button></body></html>`);
-                                                    }
+                                                    abrirImagemNovaAba(nota.imagemBase64);
                                                 }}>
                                                     <Image source={{ uri: nota.imagemBase64 }} style={estilos.previsualizacaoNota} resizeMode="cover" />
                                                 </TouchableOpacity>
@@ -1150,10 +1164,7 @@ export default function TelaNotas() {
                                             
                                             {nota.imagemBase64 ? (
                                                 <TouchableOpacity onPress={() => {
-                                                    if (Platform.OS === 'web') {
-                                                        const win = window.open();
-                                                        win?.document.write(`<html><body style="margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh;background:#1a1a1a;"><img src="${nota.imagemBase64}" style="max-width:100%;max-height:100vh"/><button onclick="window.close()" style="position:fixed;top:20px;right:20px;padding:10px 20px;background:#ff4444;color:white;border:none;border-radius:8px;cursor:pointer">Fechar</button></body></html>`);
-                                                    }
+                                                    abrirImagemNovaAba(nota.imagemBase64);
                                                 }}>
                                                     <Image source={{ uri: nota.imagemBase64 }} style={estilos.previsualizacaoNota} resizeMode="cover" />
                                                 </TouchableOpacity>
