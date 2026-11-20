@@ -134,7 +134,7 @@ export default function TelaLogin() {
 
                     <TouchableOpacity
                         style={estilos.botao}
-                        onPress={identificarLogin}
+                        onPress={() => { void identificarLogin(); }}
                         disabled={estaCarregando}
                     >
                         <LinearGradient colors={[cores.charcoal, cores.grey]} style={estilos.fundoBotao}>

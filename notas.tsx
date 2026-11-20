@@ -815,7 +815,7 @@ export default function TelaNotas() {
                                         <Text style={estilos.tituloViagem}>{viagem.destino}</Text>
                                         <View style={estilos.botoesCabecalhoDireita}>
                                             {viagem.status === 'Rejeitada' && (
-                                                <TouchableOpacity onPress={() => excluirNota(viagem.id)}>
+                                                <TouchableOpacity onPress={() => { void excluirNota(viagem.id); }}>
                                                     <Ionicons name="trash" size={20} color={cores.error} />
                                                 </TouchableOpacity>
                                             )}
@@ -903,11 +903,11 @@ export default function TelaNotas() {
                                     </View>
                                 )}
                                 <View style={estilos.linhaBotoesFoto}>
-                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={tirarFotoNota} disabled={comprimindoImagem}>
+                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={() => { void tirarFotoNota(); }} disabled={comprimindoImagem}>
                                         <Ionicons name="camera" size={22} color={cores.primary} />
                                         <Text style={estilos.botaoFotoOpcaoTexto}>Tirar foto</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={escolherDaGaleria} disabled={comprimindoImagem}>
+                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={() => { void escolherDaGaleria(); }} disabled={comprimindoImagem}>
                                         <Ionicons name="images" size={22} color={cores.primary} />
                                         <Text style={estilos.botaoFotoOpcaoTexto}>Galeria</Text>
                                     </TouchableOpacity>
@@ -928,7 +928,7 @@ export default function TelaNotas() {
 
                                 <View style={estilos.botoesModal}>
                                     <Button mode="outlined" onPress={() => setModalNotaVisivel(false)} style={estilos.botaoCancelarModal} labelStyle={estilos.rotuloCancelarModal}>Cancelar</Button>
-                                    <Button mode="contained" onPress={salvarAnexoNota} loading={estaSalvando} disabled={estaSalvando || comprimindoImagem} style={estilos.botaoSalvarModal} labelStyle={estilos.rotuloSalvarModal}>Salvar</Button>
+                                    <Button mode="contained" onPress={() => { void salvarAnexoNota(); }} loading={estaSalvando} disabled={estaSalvando || comprimindoImagem} style={estilos.botaoSalvarModal} labelStyle={estilos.rotuloSalvarModal}>Salvar</Button>
                                 </View>
                             </ScrollView>
                         </View>
@@ -999,7 +999,7 @@ export default function TelaNotas() {
                             <TouchableOpacity
                                 key={motorista.uid}
                                 style={estilos.cartaoMotorista}
-                                onPress={() => buscarViagensDoMotorista(motorista)}
+                                onPress={() => { void buscarViagensDoMotorista(motorista); }}
                             >
                                 <Avatar.Text size={50} label={motorista.nome.substring(0, 2).toUpperCase()} style={estilos.avatar} />
                                 <View style={estilos.infoMotorista}>
@@ -1177,7 +1177,7 @@ export default function TelaNotas() {
                                             
                                             {nota.status === 'Pendente' && nota.imagemBase64 && (
                                                 <View style={estilos.botoesAprovacao}>
-                                                    <TouchableOpacity style={[estilos.botaoAprovar, { backgroundColor: cores.success }]} onPress={() => aprovarNota(viagem.id, idx)}>
+                                                    <TouchableOpacity style={[estilos.botaoAprovar, { backgroundColor: cores.success }]} onPress={() => { void aprovarNota(viagem.id, idx); }}>
                                                         <Ionicons name="checkmark" size={20} color={cores.white} />
                                                         <Text style={estilos.textoBotaoAprovar}>Aprovar</Text>
                                                     </TouchableOpacity>
@@ -1278,7 +1278,7 @@ export default function TelaNotas() {
 
                                 <View style={estilos.botoesModal}>
                                     <Button mode="outlined" onPress={() => setModalViagemVisivel(false)} style={estilos.botaoCancelarModal} labelStyle={estilos.rotuloCancelarModal}>Cancelar</Button>
-                                    <Button mode="contained" onPress={salvarViagem} loading={estaSalvando} disabled={estaSalvando} style={estilos.botaoSalvarModal} labelStyle={estilos.rotuloSalvarModal}>Salvar</Button>
+                                    <Button mode="contained" onPress={() => { void salvarViagem(); }} loading={estaSalvando} disabled={estaSalvando} style={estilos.botaoSalvarModal} labelStyle={estilos.rotuloSalvarModal}>Salvar</Button>
                                 </View>
                             </ScrollView>
                         </View>
@@ -1308,7 +1308,7 @@ export default function TelaNotas() {
                                 <TouchableOpacity style={estilos.botaoCancelarRejeicao} onPress={() => { setJustificativaModalVisivel(false); setNotaParaRejeitar(null); setMotivoRejeicao(''); }}>
                                     <Text style={estilos.textoCancelarRejeicao}>Cancelar</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={estilos.botaoConfirmarRejeicao} onPress={rejeitarNota}>
+                                <TouchableOpacity style={estilos.botaoConfirmarRejeicao} onPress={() => { void rejeitarNota(); }}>
                                     <Ionicons name="close" size={20} color={cores.white} />
                                     <Text style={estilos.textoConfirmarRejeicao}>Rejeitar</Text>
                                 </TouchableOpacity>

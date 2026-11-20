@@ -607,7 +607,7 @@ export default function DespesasScreen() {
                         <View style={styles.containerVazio}><Ionicons name="people-outline" size={64} color={cores.dustGrey} /><Text style={styles.tituloVazio}>Nenhum motorista</Text></View>
                     ) : (
                         motoristasFiltrados.map((motorista) => (
-                            <TouchableOpacity key={motorista.uid} style={styles.cartaoMotorista} onPress={() => fetchDespesasDoMotorista(motorista)}>
+                            <TouchableOpacity key={motorista.uid} style={styles.cartaoMotorista} onPress={() => { void fetchDespesasDoMotorista(motorista); }}>
                                 <Avatar.Text size={50} label={motorista.nome.substring(0, 2).toUpperCase()} style={styles.avatar} />
                                 <View style={styles.motoristaInfo}>
                                     <Text style={styles.motoristaNome}>{motorista.nome}</Text>
@@ -763,7 +763,7 @@ export default function DespesasScreen() {
                                     
                                     {podeAprovar && despesa.status === 'Pendente' && (
                                         <View style={styles.botoesAprovacao}>
-                                            <TouchableOpacity style={[styles.botaoAprovar, { backgroundColor: cores.success }]} onPress={() => aprovarDespesa(despesa)}>
+                                            <TouchableOpacity style={[styles.botaoAprovar, { backgroundColor: cores.success }]} onPress={() => { void aprovarDespesa(despesa); }}>
                                                 <Ionicons name="checkmark" size={20} color={cores.white} /><Text style={styles.textoAprovar}>Aprovar</Text>
                                             </TouchableOpacity>
                                             <TouchableOpacity style={[styles.botaoAprovar, { backgroundColor: cores.error }]} onPress={() => {
@@ -811,7 +811,7 @@ export default function DespesasScreen() {
                                 <TouchableOpacity style={styles.botaoCancelarRejeicao} onPress={() => { setJustificativaModalVisivel(false); setDespesaParaRejeitar(null); setMotivoRejeicao(''); }}>
                                     <Text style={styles.textoCancelarRejeicao}>Cancelar</Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={styles.botaoConfirmarRejeicao} onPress={rejeitarDespesa}>
+                                <TouchableOpacity style={styles.botaoConfirmarRejeicao} onPress={() => { void rejeitarDespesa(); }}>
                                     <Ionicons name="close" size={20} color={cores.white} />
                                     <Text style={styles.textoConfirmarRejeicao}>Rejeitar</Text>
                                 </TouchableOpacity>
@@ -911,7 +911,7 @@ export default function DespesasScreen() {
                                         <Text style={styles.dataCartao}>{formatarData(despesa.criadoEm)}</Text>
                                         <View style={styles.acoesCartao}>
                                             {(despesa.status === 'Pendente' || despesa.status === 'Rejeitado') && (<TouchableOpacity onPress={() => editarDespesa(despesa)}><Ionicons name="pencil" size={20} color={cores.primary} /></TouchableOpacity>)}
-                                            {(despesa.status === 'Pendente' || despesa.status === 'Rejeitado') && (<TouchableOpacity onPress={() => excluirDespesa(despesa.id)}><Ionicons name="trash" size={20} color={cores.error} /></TouchableOpacity>)}
+                                            {(despesa.status === 'Pendente' || despesa.status === 'Rejeitado') && (<TouchableOpacity onPress={() => { void excluirDespesa(despesa.id); }}><Ionicons name="trash" size={20} color={cores.error} /></TouchableOpacity>)}
                                         </View>
                                     </View>
                                     <Divider style={styles.divisor} />
@@ -961,11 +961,11 @@ export default function DespesasScreen() {
                                     </View>
                                 )}
                                 <View style={styles.linhaBotoesFoto}>
-                                    <TouchableOpacity style={styles.botaoFotoOpcao} onPress={tirarFotoEConverterBase64} disabled={comprimindoImagem}>
+                                    <TouchableOpacity style={styles.botaoFotoOpcao} onPress={() => { void tirarFotoEConverterBase64(); }} disabled={comprimindoImagem}>
                                         <Ionicons name="camera" size={22} color={cores.primary} />
                                         <Text style={styles.botaoFotoOpcaoTexto}>Tirar foto</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={styles.botaoFotoOpcao} onPress={escolherDaGaleria} disabled={comprimindoImagem}>
+                                    <TouchableOpacity style={styles.botaoFotoOpcao} onPress={() => { void escolherDaGaleria(); }} disabled={comprimindoImagem}>
                                         <Ionicons name="images" size={22} color={cores.primary} />
                                         <Text style={styles.botaoFotoOpcaoTexto}>Galeria</Text>
                                     </TouchableOpacity>
@@ -992,7 +992,7 @@ export default function DespesasScreen() {
                                 <TextInput mode="outlined" label="Descrição" value={formData.descricao} onChangeText={t => setFormData({ ...formData, descricao: t })} multiline numberOfLines={3} style={styles.inputModal} />
                                 <View style={styles.botoesModal}>
                                     <Button mode="outlined" onPress={() => setModalVisible(false)} style={styles.botaoCancelar}>Cancelar</Button>
-                                    <Button mode="contained" onPress={salvarDespesa} loading={salvando} disabled={salvando || comprimindoImagem} style={styles.botaoSalvar}>Salvar</Button>
+                                    <Button mode="contained" onPress={() => { void salvarDespesa(); }} loading={salvando} disabled={salvando || comprimindoImagem} style={styles.botaoSalvar}>Salvar</Button>
                                 </View>
                             </ScrollView>
                         </View>
@@ -1141,7 +1141,7 @@ export default function DespesasScreen() {
                                 
                                 {podeAprovar && despesa.status === 'Pendente' && (
                                     <View style={styles.botoesAprovacao}>
-                                        <TouchableOpacity style={[styles.botaoAprovar, { backgroundColor: cores.success }]} onPress={() => aprovarDespesa(despesa)}>
+                                        <TouchableOpacity style={[styles.botaoAprovar, { backgroundColor: cores.success }]} onPress={() => { void aprovarDespesa(despesa); }}>
                                             <Ionicons name="checkmark" size={20} color={cores.white} /><Text style={styles.textoAprovar}>Aprovar</Text>
                                         </TouchableOpacity>
                                         <TouchableOpacity style={[styles.botaoAprovar, { backgroundColor: cores.error }]} onPress={() => {
@@ -1188,7 +1188,7 @@ export default function DespesasScreen() {
                             <TouchableOpacity style={styles.botaoCancelarRejeicao} onPress={() => { setJustificativaModalVisivel(false); setDespesaParaRejeitar(null); setMotivoRejeicao(''); }}>
                                 <Text style={styles.textoCancelarRejeicao}>Cancelar</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styles.botaoConfirmarRejeicao} onPress={rejeitarDespesa}>
+                            <TouchableOpacity style={styles.botaoConfirmarRejeicao} onPress={() => { void rejeitarDespesa(); }}>
                                 <Ionicons name="close" size={20} color={cores.white} />
                                 <Text style={styles.textoConfirmarRejeicao}>Rejeitar</Text>
                             </TouchableOpacity>

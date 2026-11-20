@@ -114,7 +114,7 @@ export default function TelaSuperAdmin() {
         <View style={estilos.container}>
             <LinearGradient colors={[cores.primary, cores.grey]} style={estilos.cabecalho}>
                 <View style={estilos.conteudoCabecalho}>
-                    <TouchableOpacity onPress={fazerLogout} style={estilos.botaoLogout}>
+                    <TouchableOpacity onPress={() => { void fazerLogout(); }} style={estilos.botaoLogout}>
                         <Ionicons name="exit-outline" size={24} color={cores.white} />
                     </TouchableOpacity>
                     <View style={estilos.containerIcone}>
@@ -180,7 +180,7 @@ export default function TelaSuperAdmin() {
                                 </View>
 
                                 <View style={estilos.containerBotoes}>
-                                    <TouchableOpacity style={estilos.botaoAprovar} onPress={() => aprovarUsuario(solicitacao)}>
+                                    <TouchableOpacity style={estilos.botaoAprovar} onPress={() => { void aprovarUsuario(solicitacao); }}>
                                         <Ionicons name="checkmark" size={20} color={cores.white} />
                                         <Text style={estilos.textoBotao}>APROVAR</Text>
                                     </TouchableOpacity>

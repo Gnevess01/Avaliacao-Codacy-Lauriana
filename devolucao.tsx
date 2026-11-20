@@ -782,7 +782,7 @@ export default function TelaDevolucao() {
                             <TouchableOpacity
                                 key={motorista.uid}
                                 style={estilos.cartaoMotorista}
-                                onPress={() => buscarDevolucoesDoMotorista(motorista)}
+                                onPress={() => { void buscarDevolucoesDoMotorista(motorista); }}
                             >
                                 <Avatar.Text size={50} label={motorista.nome.substring(0, 2).toUpperCase()} style={estilos.avatar} />
                                 <View style={estilos.infoMotorista}>
@@ -958,7 +958,7 @@ export default function TelaDevolucao() {
                                                 </TouchableOpacity>
                                             )}
                                             {isAdmin && item.status !== 'Aprovado' && (
-                                                <TouchableOpacity onPress={() => excluirRegistro(item.id)}>
+                                                <TouchableOpacity onPress={() => { void excluirRegistro(item.id); }}>
                                                     <Ionicons name="trash" size={20} color={cores.error} />
                                                 </TouchableOpacity>
                                             )}
@@ -1009,7 +1009,7 @@ export default function TelaDevolucao() {
                                                 </Text>
                                             </View>
                                             {item.statusEntrega !== 'Entregue' && (
-                                                <TouchableOpacity onPress={() => marcarComoEntregue(item)} style={estilos.botaoMarcarEntregue}>
+                                                <TouchableOpacity onPress={() => { void marcarComoEntregue(item); }} style={estilos.botaoMarcarEntregue}>
                                                     <Text style={estilos.textoBotaoMarcarEntregue}>Marcar como entregue</Text>
                                                 </TouchableOpacity>
                                             )}
@@ -1085,7 +1085,7 @@ export default function TelaDevolucao() {
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     style={estilos.botaoConfirmarModalRejeicao}
-                                    onPress={rejeitarDevolucao}
+                                    onPress={() => { void rejeitarDevolucao(); }}
                                 >
                                     <Ionicons name="close" size={20} color={cores.white} />
                                     <Text style={estilos.textoConfirmarModalRejeicao}>Rejeitar</Text>
@@ -1106,14 +1106,14 @@ export default function TelaDevolucao() {
                             <View style={estilos.botoesModalEntrega}>
                                 <TouchableOpacity
                                     style={estilos.botaoPendenteModalEntrega}
-                                    onPress={() => devolucaoParaAprovar && aprovarDevolucao(devolucaoParaAprovar, 'Pendente')}
+                                    onPress={() => { if (devolucaoParaAprovar) { void aprovarDevolucao(devolucaoParaAprovar, 'Pendente'); } }}
                                 >
                                     <Ionicons name="time-outline" size={20} color={cores.grey} />
                                     <Text style={estilos.textoPendenteModalEntrega}>Pendente</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     style={estilos.botaoEntregueModalEntrega}
-                                    onPress={() => devolucaoParaAprovar && aprovarDevolucao(devolucaoParaAprovar, 'Entregue')}
+                                    onPress={() => { if (devolucaoParaAprovar) { void aprovarDevolucao(devolucaoParaAprovar, 'Entregue'); } }}
                                 >
                                     <Ionicons name="checkmark-circle" size={20} color={cores.white} />
                                     <Text style={estilos.textoEntregueModalEntrega}>Entregue</Text>
@@ -1147,11 +1147,11 @@ export default function TelaDevolucao() {
                                     </View>
                                 )}
                                 <View style={estilos.linhaBotoesFoto}>
-                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={tirarFoto} disabled={comprimindoImagem}>
+                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={() => { void tirarFoto(); }} disabled={comprimindoImagem}>
                                         <Ionicons name="camera" size={22} color={cores.primary} />
                                         <Text style={estilos.botaoFotoOpcaoTexto}>Tirar foto</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={escolherDaGaleria} disabled={comprimindoImagem}>
+                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={() => { void escolherDaGaleria(); }} disabled={comprimindoImagem}>
                                         <Ionicons name="images" size={22} color={cores.primary} />
                                         <Text style={estilos.botaoFotoOpcaoTexto}>Galeria</Text>
                                     </TouchableOpacity>
@@ -1231,7 +1231,7 @@ export default function TelaDevolucao() {
                                     </Button>
                                     <Button
                                         mode="contained"
-                                        onPress={salvarRegistro}
+                                        onPress={() => { void salvarRegistro(); }}
                                         loading={estaSalvando}
                                         disabled={estaSalvando || comprimindoImagem}
                                         style={estilos.botaoSalvarModal}
@@ -1352,7 +1352,7 @@ export default function TelaDevolucao() {
                                                 </TouchableOpacity>
                                             )}
                                             {(item.status === 'Pendente' || item.status === 'Rejeitado') && (
-                                                <TouchableOpacity onPress={() => excluirRegistro(item.id)}>
+                                                <TouchableOpacity onPress={() => { void excluirRegistro(item.id); }}>
                                                     <Ionicons name="trash" size={20} color={cores.error} />
                                                 </TouchableOpacity>
                                             )}
@@ -1439,7 +1439,7 @@ export default function TelaDevolucao() {
                                 </TouchableOpacity>
                                 <TouchableOpacity
                                     style={estilos.botaoConfirmarModalRejeicao}
-                                    onPress={rejeitarDevolucao}
+                                    onPress={() => { void rejeitarDevolucao(); }}
                                 >
                                     <Ionicons name="close" size={20} color={cores.white} />
                                     <Text style={estilos.textoConfirmarModalRejeicao}>Rejeitar</Text>
@@ -1473,11 +1473,11 @@ export default function TelaDevolucao() {
                                     </View>
                                 )}
                                 <View style={estilos.linhaBotoesFoto}>
-                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={tirarFoto} disabled={comprimindoImagem}>
+                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={() => { void tirarFoto(); }} disabled={comprimindoImagem}>
                                         <Ionicons name="camera" size={22} color={cores.primary} />
                                         <Text style={estilos.botaoFotoOpcaoTexto}>Tirar foto</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={escolherDaGaleria} disabled={comprimindoImagem}>
+                                    <TouchableOpacity style={estilos.botaoFotoOpcao} onPress={() => { void escolherDaGaleria(); }} disabled={comprimindoImagem}>
                                         <Ionicons name="images" size={22} color={cores.primary} />
                                         <Text style={estilos.botaoFotoOpcaoTexto}>Galeria</Text>
                                     </TouchableOpacity>
@@ -1558,7 +1558,7 @@ export default function TelaDevolucao() {
                                     </Button>
                                     <Button
                                         mode="contained"
-                                        onPress={salvarRegistro}
+                                        onPress={() => { void salvarRegistro(); }}
                                         loading={estaSalvando}
                                         disabled={estaSalvando || comprimindoImagem}
                                         style={estilos.botaoSalvarModal}

@@ -1021,7 +1021,7 @@ export default function TelaPlacas() {
                                         </Button>
                                         <Button
                                             mode="contained"
-                                            onPress={salvarConjunto}
+                                            onPress={() => { void salvarConjunto(); }}
                                             loading={estaSalvando}
                                             disabled={estaSalvando}
                                             style={estilos.botaoSalvarModal}
@@ -1151,14 +1151,14 @@ export default function TelaPlacas() {
                                             </TouchableOpacity>
                                             <TouchableOpacity
                                                 style={[estilos.botaoAcao, estilos.botaoAlternar]}
-                                                onPress={() => toggleStatusCavalo(cavalo)}
+                                                onPress={() => { void toggleStatusCavalo(cavalo); }}
                                             >
                                                 <Ionicons name={cavalo.ativa ? 'eye-off' : 'eye'} size={20} color={cores.white} />
                                                 <Text style={estilos.textoBotaoAcao}>{cavalo.ativa ? 'Desativar' : 'Ativar'}</Text>
                                             </TouchableOpacity>
                                             <TouchableOpacity
                                                 style={[estilos.botaoAcao, estilos.botaoExcluir]}
-                                                onPress={() => excluirCavalo(cavalo)}
+                                                onPress={() => { void excluirCavalo(cavalo); }}
                                             >
                                                 <Ionicons name="trash" size={20} color={cores.white} />
                                                 <Text style={estilos.textoBotaoAcao}>Excluir</Text>
@@ -1216,14 +1216,14 @@ export default function TelaPlacas() {
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
                                                     style={[estilos.botaoAcao, estilos.botaoAlternar]}
-                                                    onPress={() => toggleStatusConjunto(conjunto)}
+                                                    onPress={() => { void toggleStatusConjunto(conjunto); }}
                                                 >
                                                     <Ionicons name={conjunto.ativo ? 'eye-off' : 'eye'} size={20} color={cores.white} />
                                                     <Text style={estilos.textoBotaoAcao}>{conjunto.ativo ? 'Desativar' : 'Ativar'}</Text>
                                                 </TouchableOpacity>
                                                 <TouchableOpacity
                                                     style={[estilos.botaoAcao, estilos.botaoExcluir]}
-                                                    onPress={() => excluirConjunto(conjunto)}
+                                                    onPress={() => { void excluirConjunto(conjunto); }}
                                                 >
                                                     <Ionicons name="trash" size={20} color={cores.white} />
                                                     <Text style={estilos.textoBotaoAcao}>Excluir</Text>
@@ -1410,7 +1410,7 @@ export default function TelaPlacas() {
                                         </Button>
                                         <Button
                                             mode="contained"
-                                            onPress={salvarCavalo}
+                                            onPress={() => { void salvarCavalo(); }}
                                             loading={estaSalvando}
                                             disabled={estaSalvando}
                                             style={estilos.botaoSalvarModal}
@@ -1544,7 +1544,7 @@ export default function TelaPlacas() {
                                         </Button>
                                         <Button
                                             mode="contained"
-                                            onPress={salvarConjunto}
+                                            onPress={() => { void salvarConjunto(); }}
                                             loading={estaSalvando}
                                             disabled={estaSalvando}
                                             style={estilos.botaoSalvarModal}

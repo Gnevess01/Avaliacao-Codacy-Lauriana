@@ -31,7 +31,7 @@ export const BotaoVoltar = ({ cor = cores.white, tamanho = 24, aoPressionar }: B
         }
     };
     return (
-        <TouchableOpacity onPress={handlePress} style={styles.botao}>
+        <TouchableOpacity onPress={() => { void handlePress(); }} style={styles.botao}>
             <Ionicons name="chevron-back" size={tamanho} color={cor} />
         </TouchableOpacity>
     );

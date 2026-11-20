@@ -275,7 +275,7 @@ export default function TelaCadastro() {
 
                     <Button
                         mode="contained"
-                        onPress={validarCadastro}
+                        onPress={() => { void validarCadastro(); }}
                         loading={estaCarregando}
                         disabled={estaCarregando}
                         style={estilos.botaoCadastro}

@@ -57,7 +57,7 @@ export default function TelaEsqueciSenha() {
 
                     <TouchableOpacity
                         style={estilos.botao}
-                        onPress={resetarSenha}
+                        onPress={() => { void resetarSenha(); }}
                         disabled={estaCarregando}
                     >
                         <LinearGradient
